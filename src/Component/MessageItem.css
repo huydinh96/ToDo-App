@@ -1,0 +1,33 @@
+.list-message{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid grey;
+    padding: 10px;
+}
+.list-message-bg{
+    display: flex;
+    justify-content: space-between;
+    background: #eaeaea;
+    padding: 10px;
+    border: 1px solid grey;
+}
+.func-crud button{
+    margin: 0px 3px;
+    border: none;
+    padding: 5px;
+}
+.func-crud .fa-pencil{
+    background: white;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.func-crud .fa-check,.fa-repeat{
+    background: blue;
+    color: white;
+    border-radius: 4px;
+}
+.func-crud .fa-times{
+    background: red;
+    color: white;
+    border-radius: 4px;
+}
