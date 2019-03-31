@@ -9,9 +9,13 @@ class App extends Component {
     this.state = {
       value: "",
       data:[],
+      editMode: false,
+      selectedItemTable: ""
     };
     this.addDataMain = this.addDataMain.bind(this);
     this.deleteData = this.deleteData.bind(this);
+    this.checkEdit = this.checkEdit.bind(this);
+    this.editData = this.editData.bind(this);
   }
   fetchData = () =>{
     databaseCloud.collection("todos").get().then(querySnapshot =>{
@@ -72,6 +76,32 @@ class App extends Component {
       alert("Failed")
     }
   }
+  async checkEdit(id){
+    this.setState({
+      ...this.state,
+      editMode: true,
+      selectedItemTable:id
+    });
+  }
+  async editData(value){
+    if(this.state.editMode === false){
+      return false;
+    }
+    try{
+      let res = await databaseCloud.collection("todos").doc(this.state.selectedItemTable).set({
+        description: value
+      })
+      this.setState({
+        ...this.state,
+        editMode: false,
+        selectedItemTable: ""
+      });
+
+    this.fetchData();
+    }catch{
+      alert("Failed")
+    }
+  }
   render() {
     return (
       <div className="App container">
@@ -81,6 +111,10 @@ class App extends Component {
             <InputAdd addData = {this.addDataMain}/>
             <ListView list={this.state.data}
               deleteData = {this.deleteData}
+              checkEdit={this.checkEdit}
+              editMode={this.state.editMode}
+              selectedItemTable={this.state.selectedItemTable}
+              editData={this.editData}
             />
           </div>
         </div>
