@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import TaskForm from './Component/TaskForm';
-import MessageList from './Component/MessageList';
 import {databaseCloud} from './firebase';
+import InputAdd from './Component/InputAdd';
+import ListView from './Component/ListView';
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      tasks:[],
-    }
+      value: "",
+      data:[],
+    };
+    this.addDataMain = this.addDataMain.bind(this);
   }
   fetchData = () =>{
     databaseCloud.collection("todos").get().then(querySnapshot =>{
@@ -22,7 +24,7 @@ class App extends Component {
         // console.log("dadada",doc.data());
       });
       this.setState({
-        tasks: arrTemp
+        data: arrTemp
       });
     })
   }
@@ -30,13 +32,39 @@ class App extends Component {
    this.fetchData();
   }
   
+  async addDataMain(value) {
+    if (value.length === 0) {
+      alert("Empty");
+      return false;
+    }
+    // let check = false;
+    let respone = await databaseCloud.collection("todos").add({
+      description: value
+    });
+
+    if (respone.id) {
+      const arrTemp = this.state.data;
+      arrTemp.push({
+        description: value,
+        id: respone.id
+      });
+      this.setState({
+        ...this.state,
+        data: arrTemp
+      });
+      alert("Succes");
+    } else {
+      alert("Failed");
+    }
+  }
   render() {
     return (
       <div className="App container">
         <div className="row">
           <div className="col-md-6">
-            <TaskForm/>
-            <MessageList />
+            <h3>ToDo App</h3>
+            <InputAdd addData = {this.addDataMain}/>
+            <ListView list={this.state.data}/>
           </div>
         </div>
       </div>

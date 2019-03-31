@@ -22,7 +22,46 @@
 .App-link {
   color: #61dafb;
 }
+input{
+  width: 85%;
+  border: 1px solid grey;
+}
+h3{
+text-align: left;
+}
+.listview {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+}
 
+.btn-list {
+  line-height: 5;
+}
+
+.list-view {margin-top: 20px;}
+button.fa {
+  margin: 5px 10px;
+  outline: none;
+  font-size: 1.4em;
+}
+
+button.fa.fa-check {
+  background: white;
+}
+
+button.fa.fa-pencil {
+  background: blue;
+  /* border: none; */
+  outline: none;
+  color: white;
+}
+
+button.fa.fa-times {
+  color: white;
+  background: red;
+  margin: 0px 35px 0 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
