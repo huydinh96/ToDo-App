@@ -10,7 +10,8 @@ class App extends Component {
       value: "",
       data:[],
       editMode: false,
-      selectedItemTable: ""
+      selectedItemTable: "",
+      status: false
     };
     this.addDataMain = this.addDataMain.bind(this);
     this.deleteData = this.deleteData.bind(this);
@@ -23,7 +24,8 @@ class App extends Component {
       querySnapshot.forEach(doc =>{
         const itemTemp = {
           ...doc.data(),
-          id: doc.id
+          id: doc.id,
+          status: doc.status
         };
         arrTemp.push(itemTemp);
         // console.log("dadada",doc.data());
@@ -44,14 +46,16 @@ class App extends Component {
     }
     // let check = false;
     let respone = await databaseCloud.collection("todos").add({
-      description: value
+      description: value,
+      status: false
     });
 
     if (respone.id) {
       const arrTemp = this.state.data;
       arrTemp.push({
         description: value,
-        id: respone.id
+        id: respone.id,
+        status: respone.status
       });
       this.setState({
         ...this.state,
@@ -102,6 +106,17 @@ class App extends Component {
       alert("Failed")
     }
   }
+  async updateStatus(id){
+    try{
+      let respone = await databaseCloud.collection("todos").add({
+        status: false
+      });
+
+    }catch{
+      alert("Failed")
+    }
+  }
+
   render() {
     return (
       <div className="App container">
@@ -115,6 +130,7 @@ class App extends Component {
               editMode={this.state.editMode}
               selectedItemTable={this.state.selectedItemTable}
               editData={this.editData}
+              updateStatus = {this.updateStatus}
             />
           </div>
         </div>

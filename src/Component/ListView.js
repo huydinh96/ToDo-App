@@ -7,7 +7,8 @@ class ListView extends Component {
         this.state = { 
             list: [], 
             editMode: false, 
-            selectedItemTable: "" 
+            selectedItemTable: "",
+            status: false 
         };
         this.viewList = this.viewList.bind(this);
         this.setEditMode = this.setEditMode.bind(this);
@@ -39,11 +40,11 @@ class ListView extends Component {
         }
         arrTemp.map((item, index)=>{
             table.push(
-              <div key={index} className="listview">
+              <div key={index} className={this.props.status === true ? 'listview' : 'listviewcheck'}>
                   <p>{item.description}</p>
                   <div className="btn-list">
                     <button class="fa fa-pencil" aria-hidden="true" onClick={() =>{this.props.checkEdit(item.id)}}></button>
-                    <button class="fa fa-check" aria-hidden="true"></button>
+                    <button class={this.props.status === true ? 'fa fa-check' : 'fa fa-repeat'} aria-hidden="true" onClick={() =>{this.props.updateStatus(item.id)}}></button>
                     <button class="fa fa-times" aria-hidden="true" onClick={()=>{this.props.deleteData(item.id)}}></button>
                   </div>
                   {this.state.editMode && this.state.selectedItemTable === item.id ? (

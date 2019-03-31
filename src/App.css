@@ -34,7 +34,12 @@ text-align: left;
   justify-content: space-between;
   border: 1px solid grey;
 }
-
+.listviewcheck{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+  background: rgba(158, 149, 149, 0.14901960784313725);
+}
 .btn-list {
   line-height: 5;
 }
