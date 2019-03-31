@@ -11,6 +11,7 @@ class App extends Component {
       data:[],
     };
     this.addDataMain = this.addDataMain.bind(this);
+    this.deleteData = this.deleteData.bind(this);
   }
   fetchData = () =>{
     databaseCloud.collection("todos").get().then(querySnapshot =>{
@@ -57,6 +58,20 @@ class App extends Component {
       alert("Failed");
     }
   }
+  async deleteData(id){
+    try{
+      let res = await databaseCloud.collection("todos").doc(id).delete();
+      var arrTemp = this.state.data.filter(item =>{
+        return item.id !==id
+      });
+      this.setState({
+        data: arrTemp
+      })
+      alert("Success");
+    }catch{
+      alert("Failed")
+    }
+  }
   render() {
     return (
       <div className="App container">
@@ -64,7 +79,9 @@ class App extends Component {
           <div className="col-md-6">
             <h3>ToDo App</h3>
             <InputAdd addData = {this.addDataMain}/>
-            <ListView list={this.state.data}/>
+            <ListView list={this.state.data}
+              deleteData = {this.deleteData}
+            />
           </div>
         </div>
       </div>

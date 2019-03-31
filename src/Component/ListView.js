@@ -21,7 +21,7 @@ class ListView extends Component {
                   <div className="btn-list">
                     <button class="fa fa-check" aria-hidden="true"></button>
                     <button class="fa fa-pencil" aria-hidden="true"></button>
-                    <button class="fa fa-times" aria-hidden="true"></button>
+                    <button class="fa fa-times" aria-hidden="true" onClick={()=>{this.props.deleteData(item.id)}}></button>
                   </div>
               </div>
             );
