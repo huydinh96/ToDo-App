@@ -8,6 +8,7 @@ var config = {
     messagingSenderId: "97247614191"
   };
 firebase.initializeApp(config);
-var database = firebase.database();
 
-export {database};
+export default firebase;
+// vì test thử database nên ta export database trong firebase
+export const databaseCloud  = firebase.firestore();
