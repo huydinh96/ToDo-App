@@ -7,7 +7,7 @@ Thư viện Javascipt
     + Owl Carousel 2: chuyên làm về slider
     + Slick: Cũng làm về slider, nhưng có nhiều chức năng hơn Owl Carousel và dễ sử dụng
     + AOA: khi scroll trang web xuống thì xuất hiện thông tin hoặc vài hiệu ứng mà mình chọn
-Câu 2:
+Câu 2: Async await là có đồng bộ. Giúp cho chương trình chạy lần lượt không khỏi bị bất đồng bộ trong javascript.
 Câu 3: 
 -JQuery: là thư viện javascript chỉ để thao tác với DOM.
 -AngularJS: là 1 framework, giúp develop làm web Single Page Application (SPA). Bên cạnh đó Angular 2456 được viết lại toàn bộ theo typescript. Typescipt có thể coi là một phiên bản nâng cao của Javascript bởi nó bổ sung tùy chọn kiểu tĩnh và lớp hướng đối tượng (OOP) mà điều nay không có ở Javascript
